@@ -1,7 +1,6 @@
 package hellojpa;
-
-import hellojpa.jpashop.domain.Member;
 import hellojpa.jpashop.domain.Order;
+import hellojpa.jpashop.domain.OrderItem;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -17,7 +16,8 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Order order = em.find(Order.class, 1L);
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
 
             tx.commit();
         } catch (Exception e) {
