@@ -1,8 +1,11 @@
 package hellojpa;
 
-import jakarta.persistence.*;
-
-import java.util.List;
+import hellojpa.jpashop.domain.Member;
+import hellojpa.jpashop.domain.Order;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 
 public class JpaMain {
 
@@ -14,12 +17,8 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setId(1L);
-            member.setUsername("A");
-            member.setRoleType(RoleType.USER);
+            Order order = em.find(Order.class, 1L);
 
-            em.persist(member);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
@@ -29,4 +28,5 @@ public class JpaMain {
 
         emf.close();
     }
+
 }
